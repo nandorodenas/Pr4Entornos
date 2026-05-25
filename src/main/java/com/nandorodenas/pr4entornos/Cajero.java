@@ -1,39 +1,57 @@
-/*
-* Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to
-change this license
-* Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this
-template
- */
+
 package com.nandorodenas.pr4entornos;
 
 import java.util.ArrayList;
 
 /**
- *
- * @author loren
+ * Representa un cajero automático para gestionar operaciones bancarias
+ * @author nando
  */
 public class Cajero {
-
+/**
+ * Nombre del cajero
+ */
     String n;
+/**
+ * Contador de la cantidad de tickets emitido
+ */
     int c;
+/** 
+ * Total acumulado de dinero facturado en el dia
+ */
     double t;
+/**
+ * Lista de los productos
+ */
     ArrayList<Producto> ps;
 
+/**
+ * Constructor de cajero
+ * @param n es el nombre que recibe el cajero
+ */
     public Cajero(String n) {
         this.n = n;
         this.c = 0;
         this.t = 0;
         this.ps = new ArrayList<>();
     }
-
+/**
+ * Añade el producto a la lista
+ * @param p Es el producto que recibe y que se añade 
+ */
     public void ANADIRPRODUCTO(Producto p) {
         ps.add(p);
     }
-
+/**
+ * Elimina el producto a la lista 
+ * @param p Es el producto que se elimina
+ */
     public void eliminarProDUCTO(Producto p) {
         ps.remove(p);
     }
-
+/**
+ * El metodo calcula el importe y devuelve un mensaje con lo que va a cobrar
+ */
     public void cobrar() {
         double subt = 0;
         for (Producto p : ps) {
@@ -56,7 +74,9 @@ public class Cajero {
         t = t + tot;
         ps.clear();
     }
-
+/** 
+ * Saca por pantalla el cajero que es con sus tickets emitidos, el total facturado y el iva recuadado
+ */
     public void cierreCaja() {
         double ivaRec = t - (t / (1 + 0.21));
         System.out.println("===== CIERRE DE CAJA =====");
@@ -67,15 +87,24 @@ public class Cajero {
         System.out.println("IVA recaudado: " + String.format("%.2f", ivaRec) + "EUR");
         System.out.println("==========================");
     }
-
+/**
+ * 
+ * @return true si esta vacio, false si no
+ */
     public boolean ticketVacio() {
         return ps.isEmpty();
     }
-
+/**
+ * 
+ * @return Devuelve la cantidad de tickets emitidos
+ */
     public int getTicketsEmitidos() {
         return c;
     }
-
+/**
+ * 
+ * @return Devuelve el total del dia
+ */
     public double getTotalDia() {
         return t;
     }
